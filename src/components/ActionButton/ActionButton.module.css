@@ -1,0 +1,39 @@
+.button {
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Przyciski będą się rozciągać na całą dostępną szerokość */
+  margin: 5px 0; /* Utrzymuje odstępy między przyciskami */
+}
+
+
+.blue {
+  background-color: #007bff;
+  color: white;
+}
+
+.blue:hover {
+  background-color: #0056b3;
+}
+
+.green {
+  background-color: #28a745;
+  color: white;
+}
+
+.green:hover {
+  background-color: #1e7e34;
+}
+
+.red {
+  background-color: #dc3545;
+  color: white;
+}
+
+.red:hover {
+  background-color: #c82333;
+}

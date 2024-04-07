@@ -1,0 +1,57 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Wyśrodkowanie przycisków */
+  width: 100%; /* Upewnij się, że kontener `.actions` ma ustawioną szerokość */
+  height: 100%; /* Upewnij się, że kontener ma ustawioną wysokość */
+}
+
+.cardsContainer {
+  display: grid;
+  grid-gap: 20px; /* Odstęp między kartami */
+  justify-content: center;
+  padding: 20px;
+}
+
+.orderCard {
+  background: #323232;
+  border-radius: 30px;
+  padding: 20px;
+  margin: 0; /* Zaktualizowane, bo teraz kontrolę nad marginesami ma grid-gap */
+  color: #FFFFFF;
+}
+
+h1{
+  text-align: left;
+}
+
+ul{
+  font-size: 20px;
+  text-align: left;
+}
+
+p{
+  text-align: left;
+  font-size: 20px;
+}
+
+/* Domyślnie, karty są jedna pod drugą */
+.cardsContainer {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Zwiększ szerokość karty */
+}
+
+/* Na średnich ekranach, wyświetlaj karty po dwie w rzędzie */
+@media (min-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Zaktualizuj dla dwóch kart */
+  }
+}
+
+/* Na dużych ekranach, wyświetlaj karty po trzy w rzędzie */
+@media (min-width: 1024px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Zaktualizuj dla trzech kart */
+  }
+}
+
+

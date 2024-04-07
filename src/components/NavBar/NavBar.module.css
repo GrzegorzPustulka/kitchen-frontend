@@ -1,0 +1,27 @@
+/* NavBar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #393131;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.navItem {
+  margin-left: 20px;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #fff;
+}
+
+.navItem:hover {
+  color: #aaa;
+}
