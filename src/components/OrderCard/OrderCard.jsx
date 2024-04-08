@@ -2,7 +2,8 @@ import ActionButton from '../ActionButton/ActionButton.jsx';
 import TimeAgo from "../TimeAgo/TimeAgo.jsx";
 import styles from './OrderCard.module.css';
 
-const OrderCard = ({ order }) => {
+
+const OrderCard = ({ order, onDeleteOrder }) => {
   return (
       <div className={styles.orderCard}>
           <h2>Numer zamówienia: {order.id.split('-')[0]}</h2>
@@ -18,10 +19,8 @@ const OrderCard = ({ order }) => {
           <p>{order.notes}</p>
           <div className={styles.actions}>
               <ActionButton label="PRZEPISY" color="blue"/>
-              <ActionButton label="GOTOWE" color="green" onClick={() => { /* Handle click here */
-              }}/>
-              <ActionButton label="ANULUJ" color="red" onClick={() => { /* Handle click here */
-              }}/>
+              <ActionButton label="GOTOWE" color="green" onClick={() => onDeleteOrder(order.id, "COMPLETED")}/>
+              <ActionButton label="ANULUJ" color="red" onClick={()=> onDeleteOrder(order.id, "CANCELLED")}/>
           </div>
       </div>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import OrderCard from './components/OrderCard/OrderCard.jsx';
 import styles from './components/OrderCard/OrderCard.module.css' // TODO: to bedzie trzeba zmienic xd
-import { fetchOrders, fetchOrder } from './api/orders';
+import {fetchOrders, fetchOrder, deleteOrder} from './api/orders';
 import NavBar from "./components/NavBar/NavBar.jsx";
 
 const App = () => {
@@ -31,6 +31,16 @@ const App = () => {
     }
   };
 
+  const handleDeleteOrder = async (orderId, status) => {
+  try {
+    await deleteOrder(orderId, status);
+    const updatedOrders = await fetchOrders(); // Ponownie ładujesz zamówienia, aby odzwierciedlić zmiany
+    setOrders(updatedOrders);
+  } catch (error) {
+    setError(error.message);
+  }
+};
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -40,7 +50,7 @@ const App = () => {
       <NavBar onFetchOrder={handleFetchOrder} />
       <div className={styles.cardsContainer}>
         {orders.map((order) => (
-          <OrderCard key={order.id} order={order} />
+          <OrderCard key={order.id} order={order} onDeleteOrder={handleDeleteOrder} />
         ))}
       </div>
     </div>
