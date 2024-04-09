@@ -1,7 +1,7 @@
 .actions {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Wyśrodkowanie przycisków */
+  justify-content: flex-end; /* Wyśrodkowanie przycisków */
   width: 100%; /* Upewnij się, że kontener `.actions` ma ustawioną szerokość */
   height: 100%; /* Upewnij się, że kontener ma ustawioną wysokość */
 }
@@ -19,6 +19,9 @@
   padding: 20px;
   margin: 0; /* Zaktualizowane, bo teraz kontrolę nad marginesami ma grid-gap */
   color: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 h1{
