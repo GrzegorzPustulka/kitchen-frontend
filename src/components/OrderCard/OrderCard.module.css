@@ -1,14 +1,14 @@
 .actions {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Wyśrodkowanie przycisków */
-  width: 100%; /* Upewnij się, że kontener `.actions` ma ustawioną szerokość */
-  height: 100%; /* Upewnij się, że kontener ma ustawioną wysokość */
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
 }
 
 .cardsContainer {
   display: grid;
-  grid-gap: 20px; /* Odstęp między kartami */
+  grid-gap: 20px;
   justify-content: center;
   padding: 20px;
 }
@@ -17,7 +17,7 @@
   background: #323232;
   border-radius: 30px;
   padding: 20px;
-  margin: 0; /* Zaktualizowane, bo teraz kontrolę nad marginesami ma grid-gap */
+  margin: 0;
   color: #FFFFFF;
   position: relative;
   display: flex;
@@ -38,22 +38,19 @@ p{
   font-size: 20px;
 }
 
-/* Domyślnie, karty są jedna pod drugą */
 .cardsContainer {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Zwiększ szerokość karty */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-/* Na średnich ekranach, wyświetlaj karty po dwie w rzędzie */
 @media (min-width: 768px) {
   .cardsContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Zaktualizuj dla dwóch kart */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* Na dużych ekranach, wyświetlaj karty po trzy w rzędzie */
 @media (min-width: 1024px) {
   .cardsContainer {
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Zaktualizuj dla trzech kart */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
