@@ -1,4 +1,4 @@
-import styles from './NavBar.module.css'; // Załóżmy, że tutaj są twoje style dla NavBar
+import styles from './NavBar.module.css';
 
 const NavBar = ({onFetchOrder}) => {
 

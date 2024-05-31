@@ -24,16 +24,13 @@ const modalStyle = {
 };
 
 const MealSelectorAlert = ({ meals, onSelect, onClose, isOpen }) => {
-  // Jeśli modal nie jest otwarty, nic nie renderujemy
   if (!isOpen) return null;
 
-  // Funkcja do obsługi kliknięcia w posiłek
   const handleMealClick = (mealId) => {
-    onSelect(mealId); // Przekazujemy wybrany mealId do funkcji onSelect
-    onClose(); // Zamykamy modal
+    onSelect(mealId);
+    onClose();
   };
 
-  // Renderowanie modala, który wygląda jak alert
   return (
     <div style={backdropStyle}>
       <div style={modalStyle}>

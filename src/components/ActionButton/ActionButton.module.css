@@ -6,8 +6,8 @@
   text-transform: uppercase;
   border-radius: 30px;
   transition: background-color 0.3s ease;
-  width: 100%; /* Przyciski będą się rozciągać na całą dostępną szerokość */
-  margin: 5px 0; /* Utrzymuje odstępy między przyciskami */
+  width: 100%;
+  margin: 5px 0;
 }
 
 

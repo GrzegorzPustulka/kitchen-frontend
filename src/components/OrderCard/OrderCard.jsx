@@ -10,18 +10,16 @@ const OrderCard = ({ order, onDeleteOrder }) => {
   const [isMealSelectorOpen, setIsMealSelectorOpen] = useState(false);
 
   const handleRecipesClick = () => {
-    setIsMealSelectorOpen(true); // Otwieramy modal
+    setIsMealSelectorOpen(true);
   };
 
   const handleClose = () => {
-    setIsMealSelectorOpen(false); // Zamykamy modal
+    setIsMealSelectorOpen(false);
   };
 
     const handleMealSelect = async (mealId) => {
       try {
-        const recipe = await getRecipe(mealId); // Pobierz przepis
-        // Przykład wyświetlenia przepisu w alert - zakładam, że otrzymujesz obiekt z przepisem
-        // Musisz dostosować poniższy kod do struktury danych, jaką zwraca Twoje API.
+        const recipe = await getRecipe(mealId);
         alert(`Przepis: ${recipe.name}\nOpis: ${recipe.steps}`);
       } catch (error) {
         console.error('Failed to fetch recipe:', error);
@@ -47,7 +45,6 @@ const OrderCard = ({ order, onDeleteOrder }) => {
             </div>
             <div className={styles.actions}>
                 <div>
-                    {/* ... reszta kodu OrderCard */}
                     <ActionButton label="PRZEPISY" color="blue" onClick={handleRecipesClick}/>
                     <MealSelectorAlert
                         isOpen={isMealSelectorOpen}

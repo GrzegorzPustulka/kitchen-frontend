@@ -7,7 +7,7 @@ const TimeAgo = ({ DateTimeFromApi: DateTimeFromApi, prefixText }) => {
     const updateDifference = () => {
       const orderTime = new Date(DateTimeFromApi);
       const now = new Date();
-      const differenceInMinutes = Math.round((now - orderTime) / 60000); // różnica w minutach
+      const differenceInMinutes = Math.round((now - orderTime) / 60000);
       const hours = Math.floor(differenceInMinutes / 60);
       const minutes = differenceInMinutes % 60;
 
@@ -17,16 +17,15 @@ const TimeAgo = ({ DateTimeFromApi: DateTimeFromApi, prefixText }) => {
       }
       timeAgoText += `${minutes} min`;
 
-      // Dodaj prefixText na początku, jeśli jest dostępny
       setTimeAgo(`${prefixText ? prefixText + ' ' : ''}${timeAgoText}`);
     };
 
-    updateDifference(); // Aktualizuj przy montowaniu
+    updateDifference();
 
-    const intervalId = setInterval(updateDifference, 60000); // Aktualizuj co minutę
+    const intervalId = setInterval(updateDifference, 60000);
 
-    return () => clearInterval(intervalId); // Wyczyść interval przy demontowaniu
-  }, [DateTimeFromApi, prefixText]); // Dodaj prefixText do listy zależności
+    return () => clearInterval(intervalId);
+  }, [DateTimeFromApi, prefixText]);
 
   return <p>{timeAgo}</p>;
 };
