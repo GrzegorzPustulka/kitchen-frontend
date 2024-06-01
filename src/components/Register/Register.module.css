@@ -1,19 +1,21 @@
-.loginContainer {
+.registerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('/path/to/your/background/image.jpg') no-repeat center center fixed;
+  background: url('/background.jpg') no-repeat center center fixed;
   background-size: cover;
   padding: 20px;
 }
 
-.loginBox {
+.registerBox {
   background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 100%;
+  max-width: 500px; /* Ensure the box doesn't get too wide */
 }
 
 h2 {
@@ -33,13 +35,21 @@ label {
   color: #666;
 }
 
-input {
+input, .react-datepicker-wrapper, .react-datepicker__input-container input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  display: block;
 }
 
 button {

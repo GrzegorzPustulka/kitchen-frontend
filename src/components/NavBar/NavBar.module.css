@@ -2,13 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #393131;
+  background-color: #343a40;
   color: #fff;
   padding: 10px 20px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .navLinks {
   display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
 }
 
 .navItem {
@@ -17,10 +27,59 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease;
   color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .navItem:hover {
-  color: #aaa;
+  color: #343a40;
+  background-color: #fff;
+}
+
+.navItem:focus {
+  outline: none;
+  background-color: #aaa;
+  color: #343a40;
+}
+
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.menuToggle span {
+  background-color: #fff;
+  height: 3px;
+  width: 25px;
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .menuToggle {
+    display: flex;
+  }
+
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #343a40;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navLinks.active {
+    display: flex;
+  }
+
+  .navItem {
+    margin: 10px 0;
+  }
 }
