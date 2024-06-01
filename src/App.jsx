@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+ import { useState, useEffect } from 'react';
 import './App.css';
 import OrderCard from './components/OrderCard/OrderCard.jsx';
 import styles from './components/OrderCard/OrderCard.module.css' // TODO: to bedzie trzeba zmienic xd
 import {fetchOrders, fetchOrder, deleteOrder} from './api/orders';
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Login from "./components/Login/Login.jsx";
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
+import Register from './components/Register/Register.jsx';
 
 const App = () => {
   const [orders, setOrders] = useState([]);
@@ -52,16 +53,22 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div className="app">
-          <NavBar onFetchOrder={handleFetchOrder} />
+          <ConditionalNavBar onFetchOrder={handleFetchOrder} />
           <Routes>
             <Route path="/login" element={<Login />} />
-            {/*<Route path="/register" element={<Register />} />*/}
+            <Route path="/register" element={<Register />} />
             <Route path="/" element={<ProtectedRoute><OrderList orders={orders} onDeleteOrder={handleDeleteOrder} /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
     </AuthProvider>
   );
+};
+
+const ConditionalNavBar = ({ onFetchOrder }) => {
+  const location = useLocation();
+  const hideNavBar = location.pathname === '/login' || location.pathname === '/register';
+  return !hideNavBar && <NavBar onFetchOrder={onFetchOrder} />;
 };
 
 const OrderList = ({ orders, onDeleteOrder }) => (
@@ -76,6 +83,4 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
-
 export default App;
-

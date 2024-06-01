@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:8080/kitchen/login', {
+      const response = await axios.post('http://127.0.0.1:8080/kitchen/employees/login', {
         email,
         password,
       });
@@ -29,19 +29,21 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
-      <h2>Logowanie</h2>
-      {error && <p className={styles.error}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className={styles.formGroup}>
-          <label>Hasło:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Zaloguj</button>
-      </form>
+      <div className={styles.loginBox}>
+        <h2>Logowanie</h2>
+        {error && <p className={styles.error}>{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label>Email:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Hasło:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+          <button type="submit">Zaloguj</button>
+        </form>
+      </div>
     </div>
   );
 };
