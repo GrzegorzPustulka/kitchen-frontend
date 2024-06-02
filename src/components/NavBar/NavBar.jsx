@@ -1,14 +1,37 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useAuth } from '../../AuthContext';
 
-const NavBar = ({ onFetchOrder }) => {
+const NavBar = ({ onFetchOrder, onFetchUserData }) => {
   const { isAuthenticated, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [isPersonalUser, setIsPersonalUser] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      const tokenData = JSON.parse(tokenString);
+      if (tokenData.userType === 'PERSONAL') {
+        setIsPersonalUser(true);
+      }
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleFetchUserData = () => {
+    const tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      const tokenData = JSON.parse(tokenString);
+      const userId = tokenData.userId;
+      if (userId) {
+        onFetchUserData(userId);
+      }
+    }
   };
 
   return (
@@ -20,9 +43,14 @@ const NavBar = ({ onFetchOrder }) => {
         <span></span>
       </div>
       <div className={`${styles.navLinks} ${isOpen ? styles.active : ''}`}>
-        <button className={styles.navItem} onClick={onFetchOrder}>Odbierz zamówienie</button>
-        <Link to="/recipes" className={styles.navItem}>Przepisy</Link>
-        <Link to="/me" className={styles.navItem}>Moje konto</Link>
+        {location.pathname === '/' ? (
+          <button className={styles.navItem} onClick={onFetchOrder}>Odbierz zamówienie</button>
+        ) : (
+          <Link to="/" className={styles.navItem}>Strona główna</Link>
+        )}
+        {isPersonalUser && (
+          <Link to="/me" className={styles.navItem} onClick={handleFetchUserData}>Moje konto</Link>
+        )}
         {isAuthenticated ? (
           <button className={styles.navItem} onClick={logout}>Wyloguj</button>
         ) : (
