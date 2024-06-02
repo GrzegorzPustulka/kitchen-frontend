@@ -1,17 +1,19 @@
- import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import OrderCard from './components/OrderCard/OrderCard.jsx';
-import styles from './components/OrderCard/OrderCard.module.css' // TODO: to bedzie trzeba zmienic xd
-import {fetchOrders, fetchOrder, deleteOrder} from './api/orders';
+import styles from './components/OrderCard/OrderCard.module.css';
+import { fetchOrders, fetchOrder, deleteOrder, fetchUserData } from './api/orders';
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Login from "./components/Login/Login.jsx";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
 import Register from './components/Register/Register.jsx';
+import UserProfile from './components/UserProfile/UserProfile.jsx';
 
 const App = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     loadOrders();
@@ -29,21 +31,30 @@ const App = () => {
   const handleFetchOrder = async () => {
     try {
       const newOrder = await fetchOrder();
-      setOrders(prevOrders => [...prevOrders, newOrder]); // Dodajemy nowe zamówienie do listy
+      setOrders(prevOrders => [...prevOrders, newOrder]);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleFetchUserData = async (userId) => {
+    try {
+      const data = await fetchUserData(userId);
+      setUserData(data);
     } catch (error) {
       setError(error.message);
     }
   };
 
   const handleDeleteOrder = async (orderId, status) => {
-  try {
-    await deleteOrder(orderId, status);
-    const updatedOrders = await fetchOrders(); // Ponownie ładujesz zamówienia, aby odzwierciedlić zmiany
-    setOrders(updatedOrders);
-  } catch (error) {
-    setError(error.message);
-  }
-};
+    try {
+      await deleteOrder(orderId, status);
+      const updatedOrders = await fetchOrders();
+      setOrders(updatedOrders);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -53,11 +64,12 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div className="app">
-          <ConditionalNavBar onFetchOrder={handleFetchOrder} />
+          <ConditionalNavBar onFetchOrder={handleFetchOrder} onFetchUserData={handleFetchUserData} />
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<ProtectedRoute><OrderList orders={orders} onDeleteOrder={handleDeleteOrder} /></ProtectedRoute>} />
+            <Route path="/me" element={<ProtectedRoute><UserProfile userData={userData} onFetchUserData={handleFetchUserData} /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
@@ -65,10 +77,10 @@ const App = () => {
   );
 };
 
-const ConditionalNavBar = ({ onFetchOrder }) => {
+const ConditionalNavBar = ({ onFetchOrder, onFetchUserData }) => {
   const location = useLocation();
   const hideNavBar = location.pathname === '/login' || location.pathname === '/register';
-  return !hideNavBar && <NavBar onFetchOrder={onFetchOrder} />;
+  return !hideNavBar && <NavBar onFetchOrder={onFetchOrder} onFetchUserData={onFetchUserData} />;
 };
 
 const OrderList = ({ orders, onDeleteOrder }) => (
@@ -83,4 +95,5 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
+
 export default App;

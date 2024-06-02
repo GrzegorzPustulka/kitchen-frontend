@@ -1,0 +1,17 @@
+.profileContainer {
+  padding: 20px;
+}
+
+.profileDetails {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.profileDetails p {
+  margin: 10px 0;
+}
+
+.profileDetails strong {
+  margin-right: 10px;
+}

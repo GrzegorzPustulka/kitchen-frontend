@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function fetchOrders() {
   const response = await fetch('http://127.0.0.1:8080/kitchen/orders/all');
   if (!response.ok) {
@@ -22,3 +24,13 @@ export async function deleteOrder(orderId, status) {
     throw new Error('Network response was not ok');
   }
 }
+
+export const fetchUserData = async (userId) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const response = await axios.get(`http://127.0.0.1:8080/kitchen/employees/${userId}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

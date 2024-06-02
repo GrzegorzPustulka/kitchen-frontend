@@ -19,10 +19,17 @@ const Login = () => {
         email,
         password,
       });
-      const token = response.data.token;
-      login(token);
-      navigate('/');
+      const tokenData = response.data;
+      console.log('Received token data:', tokenData); // Log the received token data
+
+      if (tokenData && tokenData.jwt) {
+        login(tokenData);
+        navigate('/');
+      } else {
+        setError('Token is not received.');
+      }
     } catch (error) {
+      console.error('Login error:', error); // Log any login errors
       setError('Nieprawidłowy email lub hasło.');
     }
   };
