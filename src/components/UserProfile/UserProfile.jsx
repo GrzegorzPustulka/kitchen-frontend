@@ -19,7 +19,7 @@ const UserProfile = ({ userData, onFetchUserData }) => {
 
   return (
     <div className={styles.profileContainer}>
-      <h2>Moje konto</h2>
+      <h2 className={styles.h2_user}>Moje konto</h2>
       <div className={styles.profileDetails}>
         <p><strong>Email:</strong> {userData.email}</p>
         <p><strong>Imię:</strong> {userData.firstName}</p>

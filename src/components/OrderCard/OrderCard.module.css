@@ -22,6 +22,16 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
+  div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  h2 {
+    color: white;
+  }
 }
 
 h1{

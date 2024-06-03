@@ -49,6 +49,7 @@ const Login = () => {
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
           <button type="submit">Zaloguj</button>
+          <button type="button" onClick={() => navigate('/register')}>Zarejestruj się</button>
         </form>
       </div>
     </div>
