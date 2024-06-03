@@ -1,5 +1,5 @@
 
-// Styl dla tła modala
+
 const backdropStyle = {
   position: 'fixed',
   top: 0,
@@ -13,7 +13,7 @@ const backdropStyle = {
   zIndex: 100,
 };
 
-// Styl dla samego modala
+
 const modalStyle = {
   backgroundColor: '#fff',
   padding: '20px',

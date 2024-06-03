@@ -1,19 +1,25 @@
 import { createContext, useState, useContext } from 'react';
 
+/*
+Stan isAuthenticated: Przechowuje informację o tym, czy użytkownik jest uwierzytelniony, na podstawie obecności tokena w localStorage.
+login: Funkcja zapisująca token w localStorage i ustawiająca stan uwierzytelnienia na true.
+logout: Funkcja usuwająca token z localStorage i ustawiająca stan uwierzytelnienia na false.
+AuthContext.Provider: Dostarcza wartości kontekstu (isAuthenticated, login, logout) do dzieci komponentu.
+* */
+
 const AuthContext = createContext();
+
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
   const login = (tokenData) => {
     const tokenString = JSON.stringify(tokenData);
-    console.log('Saving token to localStorage:', tokenString); // Log the token being saved
     localStorage.setItem('token', tokenString);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    console.log('Removing token from localStorage'); // Log the token removal
     localStorage.removeItem('token');
     setIsAuthenticated(false);
   };

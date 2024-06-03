@@ -1,11 +1,19 @@
 .profileContainer {
   padding: 20px;
+  background-color: #2c2f33;
+  color: #ffffff;
+  border-radius: 8px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profileDetails {
-  background-color: #f4f4f4;
+  background-color: #23272a;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profileDetails p {
@@ -14,4 +22,40 @@
 
 .profileDetails strong {
   margin-right: 10px;
+}
+
+.addresses {
+  margin-top: 20px;
+}
+
+.address {
+  background-color: #2c2f33;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #99aab5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.h2_user {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profileDetails p {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #3e4147;
+}
+
+.profileDetails p:last-child {
+  border-bottom: none;
 }

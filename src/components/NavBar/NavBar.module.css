@@ -7,7 +7,7 @@
   padding: 10px 20px;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .logo {
@@ -68,11 +68,12 @@
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 53px;
     right: 0;
     background-color: #343a40;
     width: 100%;
     text-align: center;
+    z-index: 999;
   }
 
   .navLinks.active {

@@ -91,6 +91,7 @@ const OrderList = ({ orders, onDeleteOrder }) => (
   </div>
 );
 
+// Komponent chronionego trasy, przekierowujący na stronę logowania, jeśli użytkownik nie jest uwierzytelniony
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" />;

@@ -44,7 +44,7 @@ input, .react-datepicker-wrapper, .react-datepicker__input-container input {
   box-sizing: border-box;
 }
 
-.react-datepicker-wrapper {
+.customDatePickerWraper {
   width: 100%;
 }
 
